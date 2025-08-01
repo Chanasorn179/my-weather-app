@@ -2,23 +2,47 @@
 <html lang="th">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="app-container">
-        <h1>Weather App</h1>
-        <form id="search-form">
-            <input type="text" id="city-input" placeholder="ค้นหาชื่อเมือง..." required>
-            <button type="submit">ค้นหา</button>
+    <div class="container">
+        <div class="header">
+            <div class="title">Weather App</div>
+        </div>
+
+        <form id="search-form" class="search-container">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input id="city-input" class="search-input" type="text" placeholder="ค้นหาเมือง..." required />
+            </div>
+            <button id="search-btn" class="search-btn" type="submit">ค้นหา</button>
         </form>
-        <div id="weather-info-container" class="weather-info">
-            <!-- ข้อมูลสภาพอากาศจะแสดงที่นี่ -->
+
+        <div id="history-wrapper"><!-- history tags inserted here --></div>
+        <div id="error-wrapper"></div>
+
+        <div id="current-weather" class="weather-card">
+            <!-- current weather -->
+        </div>
+
+        <div class="forecast-card">
+            <div class="forecast-title">พยากรณ์อากาศ 5 วัน</div>
+            <div id="forecast-container" class="forecast-container">
+                <!-- forecast items -->
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            พัฒนาโดยชนสรณ์ บุตรถา — ใช้ OpenWeatherMap API
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
