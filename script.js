@@ -218,6 +218,30 @@ async function fetchWeather(city) {
   }
 }
 
+function getWeatherEmoji(icon) {
+  const map = {
+    "01d": "☀️",
+    "01n": "🌙",
+    "02d": "🌤️",
+    "02n": "🌥️",
+    "03d": "☁️",
+    "03n": "☁️",
+    "04d": "☁️",
+    "04n": "☁️",
+    "09d": "🌧️",
+    "09n": "🌧️",
+    "10d": "🌦️",
+    "10n": "🌦️",
+    "11d": "⛈️",
+    "11n": "⛈️",
+    "13d": "❄️",
+    "13n": "❄️",
+    "50d": "🌫️",
+    "50n": "🌫️"
+  };
+  return map[icon] || "❔"; // fallback emoji
+}
+
 function renderCurrent(data) {
   const location = `${data.name}, ${data.sys.country}`;
   const temp = Math.round(data.main.temp);
@@ -226,10 +250,11 @@ function renderCurrent(data) {
   const humidity = data.main.humidity;
   const wind = data.wind.speed;
 
+  
   currentEl.innerHTML = `
     <div class="city-name gradient">${location}</div>
     <div class="weather-icon-container">
-      <div class="weather-icon-large">🌤️</div>
+      <div class="weather-icon-large">${getWeatherEmoji(data.weather[0].icon)}</div>
     </div>
     <div class="temperature gradient">${temp}°C</div>
     <div class="condition">${desc}</div>
@@ -300,7 +325,7 @@ function renderForecast(forecast) {
     card.style.setProperty("--i", idx);
     card.innerHTML = `
       <div class="forecast-day">${label}</div>
-      <div class="forecast-icon">🌤️</div>
+      <div class="forecast-icon">${getWeatherEmoji(d.icon)}</div>
       <div class="forecast-temp">${d.tempMax}° / ${d.tempMin}°</div>
       <div class="forecast-desc">${d.description}</div>
     `;
